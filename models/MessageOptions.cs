@@ -1,3 +1,4 @@
+
 public class InteractionOptions
 {
   public string Message { get; }

@@ -1,3 +1,5 @@
+using Telegram.Bot.Types.ReplyMarkups;
+
 public class SimpleMessageResponse
 {
   public string Message { get; }
@@ -12,11 +14,11 @@ public class SimpleMessageResponse
 public class InteractionResponse
 {
   public string Message { get; }
-  public string[] Options { get; }
+  public IEnumerable<InlineKeyboardButton> Buttons { get; }
 
   public InteractionResponse(string message, string[] options)
   {
     Message = message;
-    Options = options;
+    Buttons = options.Select(o => InlineKeyboardButton.WithCallbackData(o));
   }
 }
