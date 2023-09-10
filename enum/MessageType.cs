@@ -1,0 +1,6 @@
+enum MessageType
+{
+  SimpleMessage,
+
+  Interaction
+}

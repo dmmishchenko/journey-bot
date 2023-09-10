@@ -4,6 +4,7 @@ using Telegram.Bot.Types.Enums;
 
 var token = Environment.GetEnvironmentVariable("TOKEN")!;
 
+
 // start the bot
 var bot = new TelegramBotClient(token);
 var me = await bot.GetMeAsync();
@@ -44,6 +45,18 @@ async Task BotMessageReceived(ITelegramBotClient bot, Message? message)
 {
   if (message != null && message.Text != null)
   {
+    if (message.Entities != null && message.Entities.Any(e => e.Type == MessageEntityType.Hashtag))
+    {
+      var hashTags = message.Entities
+      .Where(entity => entity.Type == MessageEntityType.Hashtag)
+      .Select(e => message.Text.Substring(e.Offset, e.Length));
+
+      if(hashTags.Any()){
+        // return 
+      }
+
+
+    }
     var chatId = message.Chat.Id;
     var messageText = message.Text;
 
