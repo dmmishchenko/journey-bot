@@ -65,3 +65,8 @@ mono_crash.*
 .sfdx/
 
 .DS_store
+/.vs/journey-bot/FileContentIndex
+/.vs/journey-bot/v17
+*.sqlite
+/.vs/VSWorkspaceState.json
+*.v2
