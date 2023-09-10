@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "journey_bot": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "TOKEN": "{BOT_TOKEN}"
+      }
+    }
+  }
+}
