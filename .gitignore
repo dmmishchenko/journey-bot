@@ -70,3 +70,4 @@ mono_crash.*
 *.sqlite
 /.vs/VSWorkspaceState.json
 *.v2
+*.bin
