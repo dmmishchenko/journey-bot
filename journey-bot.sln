@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JourneyBot.Common", "Common
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{8293F9B1-3B92-424A-A567-F3493CA49176}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JourneyBot.Web", "JourneyBot.Web\JourneyBot.Web.csproj", "{6E4904F9-F909-4A2F-BCB7-943F37F55CC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JourneyBot.Web", "JourneyBot.Web\JourneyBot.Web.csproj", "{6E4904F9-F909-4A2F-BCB7-943F37F55CC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JourneyBot.Datamodel", "JourneyBot.Datamodel\JourneyBot.Datamodel.csproj", "{B7F5EDAB-4A28-4EF8-8F86-F0C76CB20055}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JourneyBot.Logic", "JourneyBot.Logic\JourneyBot.Logic.csproj", "{85B26808-5E20-4E31-B1BB-8F192B039F4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JourneyBot.Database", "JourneyBot.Database\JourneyBot.Database.csproj", "{C04B5AA9-18D4-4D47-986B-8C56D1D35031}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +35,18 @@ Global
 		{6E4904F9-F909-4A2F-BCB7-943F37F55CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E4904F9-F909-4A2F-BCB7-943F37F55CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E4904F9-F909-4A2F-BCB7-943F37F55CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7F5EDAB-4A28-4EF8-8F86-F0C76CB20055}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7F5EDAB-4A28-4EF8-8F86-F0C76CB20055}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7F5EDAB-4A28-4EF8-8F86-F0C76CB20055}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7F5EDAB-4A28-4EF8-8F86-F0C76CB20055}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85B26808-5E20-4E31-B1BB-8F192B039F4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85B26808-5E20-4E31-B1BB-8F192B039F4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85B26808-5E20-4E31-B1BB-8F192B039F4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85B26808-5E20-4E31-B1BB-8F192B039F4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C04B5AA9-18D4-4D47-986B-8C56D1D35031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C04B5AA9-18D4-4D47-986B-8C56D1D35031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C04B5AA9-18D4-4D47-986B-8C56D1D35031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C04B5AA9-18D4-4D47-986B-8C56D1D35031}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

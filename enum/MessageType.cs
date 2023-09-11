@@ -1,6 +1,0 @@
-enum MessageType
-{
-  SimpleMessage,
-
-  Interaction
-}
