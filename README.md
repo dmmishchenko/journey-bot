@@ -6,3 +6,5 @@
 - dotnet build
 - dotnet run
 
+packages:
+kreativ-software.csharpextensions
