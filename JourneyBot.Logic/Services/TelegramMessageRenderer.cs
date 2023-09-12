@@ -4,7 +4,7 @@ using JourneyBot.Logic.Interfaces;
 
 namespace JourneyBot.Logic.Services
 {
-    class TelegramMessageRenderer : IMessageRenderer
+    public class TelegramMessageRenderer : IMessageRenderer
     {
         public SimpleMessageResponse RenderMessage(MessageType messageType, SimpleMessageOptions options)
         {

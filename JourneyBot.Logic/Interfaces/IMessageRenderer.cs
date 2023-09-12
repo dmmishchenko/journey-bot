@@ -3,7 +3,7 @@ using JourneyBot.Datamodel.Models;
 
 namespace JourneyBot.Logic.Interfaces
 {
-    interface IMessageRenderer
+    public interface IMessageRenderer
     {
         SimpleMessageResponse RenderMessage(MessageType messageType, SimpleMessageOptions options);
         InteractionResponse RenderMessage(MessageType messageType, InteractionOptions options);

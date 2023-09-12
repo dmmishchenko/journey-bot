@@ -10,5 +10,6 @@ namespace JourneyBot.Datamodel.Database.Context
         public string Text { get; set; }
         public bool IsOptional { get; set; }
         public int StepId { get; set; }
+        public int MyProperty { get; set; }
     }
 }
