@@ -1,4 +1,6 @@
-﻿using Telegram.Bot;
+﻿using JourneyBot.Datamodel.Models;
+using JourneyBot.Logic.Services;
+using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;

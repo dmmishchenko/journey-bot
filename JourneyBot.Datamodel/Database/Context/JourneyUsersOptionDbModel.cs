@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JourneyBot.Datamodel.Database.Context
 {
-    public class JourneyUsersActionDbModel
+    public class JourneyUsersOptionDbModel
     {
         [Key]
         public int Id { get; set; }
@@ -11,7 +11,7 @@ namespace JourneyBot.Datamodel.Database.Context
         public int InteractionId { get; set; }
         public JourneySessionInteractionDbModel Interaction { get; set; }
         public bool IsCompleted { get; set; }
-        [InverseProperty(nameof(JourneyUserInteractionDbModel.Action))]
+        [InverseProperty(nameof(JourneyUserInteractionDbModel.Option))]
         public ICollection<JourneyUserInteractionDbModel> UsersInteractions { get; set; }
     }
 }

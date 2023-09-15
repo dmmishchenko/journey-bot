@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Common\JourneyBot.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Database\Users\" />
-  </ItemGroup>
-
 </Project>

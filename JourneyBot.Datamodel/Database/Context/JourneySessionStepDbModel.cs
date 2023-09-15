@@ -10,6 +10,13 @@ namespace JourneyBot.Datamodel.Database.Context
         [ForeignKey(nameof(Session))]
         public int SessionId { get; set; }
         public JourneySessionDbModel Session { get; set; }
-        public int Order { get; set; }
+        [ForeignKey(nameof(Condition))]
+        public int ConditionId { get; set; }
+        public JourneySessionStepConditionDbModel Condition { get; set; }
+        [ForeignKey(nameof(Interaction))]
+        public int InteractionId { get; set; }
+        public JourneySessionInteractionDbModel Interaction { get; set; }
+
+
     }
 }
