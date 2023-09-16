@@ -1,6 +1,6 @@
 namespace JourneyBot.Common.Enums
 {
-    public enum MessageType : byte
+    public enum InternalMessageType : byte
     {
         SimpleMessage = 0,
 

@@ -16,7 +16,7 @@ namespace JourneyBot.Datamodel.Database.Context
         [ForeignKey(nameof(Interaction))]
         public int InteractionId { get; set; }
         public JourneySessionInteractionDbModel Interaction { get; set; }
-
-
+        public DateTimeOffset CreateDate { get; set; }
+        public DateTimeOffset? CompleteDate { get; set; }
     }
 }

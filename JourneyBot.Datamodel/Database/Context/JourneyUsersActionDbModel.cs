@@ -13,5 +13,8 @@ namespace JourneyBot.Datamodel.Database.Context
         public bool IsCompleted { get; set; }
         [InverseProperty(nameof(JourneyUserInteractionDbModel.Action))]
         public ICollection<JourneyUserInteractionDbModel> UsersInteractions { get; set; }
+        public DateTimeOffset CreateDate { get; set; }
+        public DateTimeOffset? CompleteDate { get; set; }
+        public DateTimeOffset? VoteDate { get; set; }
     }
 }

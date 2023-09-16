@@ -12,6 +12,7 @@ namespace JourneyBot.Datamodel.Database.Context
         public JourneyDbModel Journey { get; set; }
         public DateTimeOffset CreateDate { get; set; }
         public DateTimeOffset? PauseDate { get; set; }
-        public bool IsActive { get; set; }
+        public DateTimeOffset? CompleteDate { get; set; }
+        public bool IsPaused { get; set; }
     }
 }

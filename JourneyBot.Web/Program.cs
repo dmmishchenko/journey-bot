@@ -1,9 +1,13 @@
 using JourneyBot.Logic.Interfaces;
 using JourneyBot.Logic.Services;
+using Microsoft.Extensions.Configuration;
+using JourneyBot.Database.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddJourneyBotDatabase(defaultConnection);
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IMessageRenderer, TelegramMessageRenderer>();
 

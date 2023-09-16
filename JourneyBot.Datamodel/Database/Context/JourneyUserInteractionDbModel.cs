@@ -13,5 +13,6 @@ namespace JourneyBot.Datamodel.Database.Context
         [ForeignKey(nameof(Option))]
         public int? OptionId { get; set; }
         public JourneyUsersOptionDbModel Option { get; set; }
+        public DateTimeOffset DateTime { get; set; }
     }
 }
