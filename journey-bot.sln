@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JourneyBot.Database", "Jour
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Users", "Users", "{F873F325-79A7-4447-8DB4-B2FD3D7F005F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journey.Users.Database", "Journey.Users.Database\Journey.Users.Database.csproj", "{410D6F01-944F-488F-A45C-DA87FE02CE18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Journey.Users.Database", "Journey.Users.Database\Journey.Users.Database.csproj", "{410D6F01-944F-488F-A45C-DA87FE02CE18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

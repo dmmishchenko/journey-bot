@@ -10,6 +10,12 @@ namespace JourneyBot.Datamodel.Database.Context
         [ForeignKey(nameof(UserMessage))]
         public int UserMessageId { get; set; }
         public JourneyUserMessageDbModel UserMessage { get; set; }
+        [ForeignKey(nameof(Action))]
+        public int? ActionId { get; set; }
+        public JourneyUsersActionDbModel Action { get; set; }
+        [ForeignKey(nameof(Option))]
+        public int? OptionId { get; set; }
+        public JourneyUsersOptionDbModel Option { get; set; }
         public DateTimeOffset DateTime { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace JourneyBot.Datamodel.Database.Context
         [ForeignKey(nameof(Option))]
         public int? OptionId { get; set; }
         public JourneyUsersOptionDbModel Option { get; set; }
-        [InverseProperty(nameof(JourneyUserMessageDbModel.))]
+        [InverseProperty(nameof(JourneyUserMessageDbModel.UsersMessage))]
         public ICollection<JourneyUserMessageDbModel> UserMessages { get; set; }
         public DateTimeOffset CreateDate { get; set; }
     }
