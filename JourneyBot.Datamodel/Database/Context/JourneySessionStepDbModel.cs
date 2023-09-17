@@ -7,6 +7,7 @@ namespace JourneyBot.Datamodel.Database.Context
     {
         [Key]
         public int Id { get; set; }
+        public int StepId { get; set; }
         [ForeignKey(nameof(Session))]
         public int SessionId { get; set; }
         public JourneySessionDbModel Session { get; set; }
