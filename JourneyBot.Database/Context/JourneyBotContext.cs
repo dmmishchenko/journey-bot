@@ -29,5 +29,6 @@ namespace JourneyBot.Database.Context
         public DbSet<JourneyUsersActionDbModel> UsersActions { get; set; }
         public DbSet<JourneyUsersOptionDbModel> UsersOptions { get; set; }
         public DbSet<JourneyUserInteractionDbModel> UserActions { get; set; }
+        public DbSet<JourneyBotMessageDbModel> BotMessages { get; set; }
     }
 }
