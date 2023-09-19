@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Journey.Users.Database\Journey.Users.Database.csproj" />
     <ProjectReference Include="..\JourneyBot.Database\JourneyBot.Database.csproj" />
     <ProjectReference Include="..\JourneyBot.Logic\JourneyBot.Logic.csproj" />
   </ItemGroup>

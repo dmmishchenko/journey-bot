@@ -6,6 +6,8 @@ namespace JourneyBot.Datamodel.Database.Users
     {
         [Key]
         public int Id { get; set; }
-        public int TelegramId { get; set; }
+        public int? TelegramId { get; set; }
+
+        public DateTimeOffset CreatedAt { get; set; }
     }
 }
