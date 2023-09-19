@@ -5,8 +5,12 @@ using JourneyBot.Database.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
 // Add services to the container.
-var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+var defaultConnection = builder.Configuration.GetConnectionString("DatabaseConnection");
 builder.Services.AddJourneyBotDatabase(defaultConnection);
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IMessageRenderer, TelegramMessageRenderer>();
