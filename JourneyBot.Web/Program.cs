@@ -29,6 +29,8 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.MapDefaultControllerRoute();
+
 app.UseRouting();
 
 app.UseAuthorization();
