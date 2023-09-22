@@ -6,6 +6,11 @@ namespace JourneyBot.Logic.Services
 {
     public class TelegramMessageRenderer : IMessageRenderer
     {
+        public TelegramMessageRenderer()
+        {
+            
+        }
+
         public SimpleMessageResponse RenderMessage(InternalMessageType messageType, SimpleMessageOptions options)
         {
             return new SimpleMessageResponse(message: options.Message);
