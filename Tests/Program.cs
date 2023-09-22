@@ -1,4 +1,7 @@
-﻿using Telegram.Bot;
+﻿using JourneyBot.Common.Enums;
+using JourneyBot.Datamodel.Models;
+using JourneyBot.Logic.Services;
+using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.ReplyMarkups;
@@ -58,7 +61,7 @@ async Task BotMessageReceived(ITelegramBotClient bot, Message? message)
       if (hashTags.Any())
       {
         var messageOptions = new InteractionOptions(message: message.Text, options: hashTags);
-        var interactionMessage = renderer.RenderMessage(MessageType.Interaction, messageOptions);
+        var interactionMessage = renderer.RenderMessage(InternalMessageType.Interaction, messageOptions);
 
         // Create inline keyboard markup
         var inlineKeyboard = new InlineKeyboardMarkup(interactionMessage.Buttons);

@@ -1,7 +1,20 @@
+using Journey.Users.Database.Extensions;
+using JourneyBot.Database.Extensions;
+using JourneyBot.Logic.Interfaces;
+using JourneyBot.Logic.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddEnvironmentVariables();
+
 // Add services to the container.
+var defaultConnection = builder.Configuration.GetConnectionString("DatabaseConnection");
+builder.Services.AddJourneyBotDatabase(defaultConnection);
+builder.Services.AddUsersDatabase(defaultConnection);
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<IMessageRenderer, TelegramMessageRenderer>();
 
 var app = builder.Build();
 
