@@ -1,8 +1,7 @@
+using Journey.Common.Extensions;
 using Journey.Users.Database.Extensions;
 using JourneyBot.Database.Extensions;
 using JourneyBot.Logic.Extensions;
-using JourneyBot.Logic.Interfaces;
-using JourneyBot.Logic.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,14 +11,26 @@ builder.Configuration
 
 // Add services to the container.
 var defaultConnection = builder.Configuration.GetConnectionString("DatabaseConnection");
+builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddJourneyBotDatabase(defaultConnection);
 builder.Services.AddUsersDatabase(defaultConnection);
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddLogic();
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+    app.UseDeveloperExceptionPage();
+}
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -30,12 +41,11 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapRazorPages();
-app.MapDefaultControllerRoute();
+app.MapControllers();
 
 app.Run();

@@ -3,7 +3,6 @@ using JourneyBot.Common.Enums;
 using JourneyBot.Datamodel.Models;
 using JourneyBot.Forms.JourneyBot;
 using JourneyBot.Logic.Interfaces;
-using JourneyBot.Logic.Services;
 using JourneyBot.Logic.Services.JourneyBot;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +20,7 @@ namespace JourneyBot.Web.Controllers.JourneyBot
         }
 
         [HttpGet]
-        public SimpleMessageResponse GetMessage()
+        public SimpleMessageResponse GetTestMessage()
         {
             var option = new SimpleMessageOptions("Hello");
 
@@ -29,11 +28,16 @@ namespace JourneyBot.Web.Controllers.JourneyBot
         }
 
         [HttpPost]
-        public async Task<ServerResult<bool>> PostMessage([FromBody]JourneyBotMessageForm form)
+        public async Task<ServerResult<bool>> PostMessage([FromBody] JourneyBotMessageForm form)
         {
             var result = await _messagesService.AddMessage(form);
 
             return result;
+        }
+        [HttpPost("[action]")]
+        public async Task<ServerResult<bool>> PostUsersMessage([FromBody] JourneyBotUsersMessageForm form)
+        {
+            return ServerResults.CachedTrue;
         }
     }
 }
