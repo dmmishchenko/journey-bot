@@ -1,6 +1,7 @@
 ﻿using Journey.Common.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 
 namespace Journey.Common.Extensions
 {
@@ -11,6 +12,15 @@ namespace Journey.Common.Extensions
             services.Configure<TelegramBotSettings>(configuration.GetSection(nameof(TelegramBotSettings)));
 
             return services;
+        }
+
+        public static T GetConfiguration<T>(this IServiceProvider serviceProvider) where T : class
+        {
+            var service = serviceProvider.GetService<IOptions<T>>();
+            if (service is null)
+                throw new ArgumentNullException(nameof(T));
+
+            return service.Value;
         }
     }
 }
