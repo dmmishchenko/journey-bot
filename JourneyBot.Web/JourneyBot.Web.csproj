@@ -12,11 +12,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.11" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.5.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Journey.Common\Journey.Common.csproj" />
     <ProjectReference Include="..\Journey.Users.Database\Journey.Users.Database.csproj" />
     <ProjectReference Include="..\JourneyBot.Database\JourneyBot.Database.csproj" />
+    <ProjectReference Include="..\JourneyBot.Forms\JourneyBot.Forms.csproj" />
     <ProjectReference Include="..\JourneyBot.Logic\JourneyBot.Logic.csproj" />
   </ItemGroup>
 

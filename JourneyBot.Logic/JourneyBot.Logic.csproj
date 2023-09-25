@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -8,7 +8,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\JourneyBot.Common.csproj" />
+    <ProjectReference Include="..\Journey.Common\Journey.Common.csproj" />
+    <ProjectReference Include="..\JourneyBot.Database\JourneyBot.Database.csproj" />
     <ProjectReference Include="..\JourneyBot.Datamodel\JourneyBot.Datamodel.csproj" />
+    <ProjectReference Include="..\JourneyBot.Forms\JourneyBot.Forms.csproj" />
   </ItemGroup>
 
 </Project>

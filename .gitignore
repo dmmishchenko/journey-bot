@@ -71,3 +71,4 @@ mono_crash.*
 /.vs/VSWorkspaceState.json
 *.v2
 *.bin
+/.vs/journey-bot/config
