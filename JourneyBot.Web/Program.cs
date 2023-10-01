@@ -16,7 +16,6 @@ var defaultConnection = builder.Configuration.GetConnectionString("DatabaseConne
 builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddJourneyBotDatabase(defaultConnection);
 builder.Services.AddUsersDatabase(defaultConnection);
-builder.Services.AddSettings(builder.Configuration);
 builder.Services.AddTelegramBotPolling();
 builder.Services.AddBotManagers();
 
