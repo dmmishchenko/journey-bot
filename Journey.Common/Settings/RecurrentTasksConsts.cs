@@ -1,7 +1,9 @@
 ﻿namespace Journey.Common.Settings
 {
-    public static class RecurrentTasksSettings
+    public static class RecurrentTasksConsts
     {
+        public const int MainAppWorkersCount = 10;
+
         public const string Every30SecondsCron = "*/30 * * * * *";
 
         public const string PollingTaskJobId = "polling_main";

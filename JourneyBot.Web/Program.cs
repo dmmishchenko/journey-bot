@@ -1,4 +1,6 @@
+using Hangfire;
 using Journey.Common.Extensions;
+using Journey.Common.Settings;
 using Journey.TelegramBot.Extensions;
 using Journey.TelegramBot.Polling.Extensions;
 using Journey.Users.Database.Extensions;
@@ -18,6 +20,16 @@ builder.Services.AddJourneyBotDatabase(defaultConnection);
 builder.Services.AddUsersDatabase(defaultConnection);
 builder.Services.AddTelegramBotPolling();
 builder.Services.AddBotManagers();
+builder.Services.AddHangfireServer(optionsAction =>
+{
+    optionsAction.WorkerCount = RecurrentTasksConsts.MainAppWorkersCount;
+
+    optionsAction.Queues = new[]
+    {
+        RecurrentTasksConsts.PollingQueueName
+    };
+    optionsAction.ServerName = "Main";
+});
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -44,6 +56,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseHangfireDashboard();
 
 app.UseRouting();
 

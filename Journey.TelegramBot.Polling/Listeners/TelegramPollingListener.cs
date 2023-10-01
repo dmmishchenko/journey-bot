@@ -28,7 +28,7 @@ namespace Journey.TelegramBot.Polling.Listeners
         }
 
         [AutomaticRetry(Attempts = 0)]
-        [Queue(RecurrentTasksSettings.PollingQueueName)]
+        [Queue(RecurrentTasksConsts.PollingQueueName)]
         public async Task StartPolling()
         {
             //TODO: mapping and updateType separation

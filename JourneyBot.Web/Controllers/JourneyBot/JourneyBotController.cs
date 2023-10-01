@@ -1,4 +1,7 @@
-﻿using Journey.Common.Api;
+﻿using Hangfire;
+using Journey.Common.Api;
+using Journey.Common.Settings;
+using Journey.TelegramBot.Polling.Listeners;
 using JourneyBot.Common.Enums;
 using JourneyBot.Datamodel.Models;
 using JourneyBot.Forms.JourneyBot;
@@ -12,11 +15,13 @@ namespace JourneyBot.Web.Controllers.JourneyBot
     {
         private readonly IMessageRenderer _messager;
         private readonly IJourneyBotMessagesService _messagesService;
+        private readonly ITelegramPollingListener _listener;
 
-        public JourneyBotController(IMessageRenderer messager, IJourneyBotMessagesService messagesService)
+        public JourneyBotController(IMessageRenderer messager, IJourneyBotMessagesService messagesService, ITelegramPollingListener listener)
         {
             _messager = messager;
             _messagesService = messagesService;
+            _listener = listener;
         }
 
         [HttpGet]
@@ -37,6 +42,22 @@ namespace JourneyBot.Web.Controllers.JourneyBot
         [HttpPost("[action]")]
         public async Task<ServerResult<bool>> PostUsersMessage([FromBody] JourneyBotUsersMessageForm form)
         {
+            return ServerResults.CachedTrue;
+        }
+
+        [HttpPost("[action]")]
+        public async Task<ServerResult<bool>> StartBotListenerTest()
+        {
+            RecurringJob.AddOrUpdate<ITelegramPollingListener>(RecurrentTasksConsts.PollingTaskJobId, u => u.StartPolling(), RecurrentTasksConsts.Every30SecondsCron);
+
+            return ServerResults.CachedTrue;
+        }
+
+        [HttpPost("[action]")]
+        public async Task<ServerResult<bool>> StopBotListenerTest()
+        {
+            RecurringJob.RemoveIfExists(RecurrentTasksConsts.PollingTaskJobId);
+
             return ServerResults.CachedTrue;
         }
     }
