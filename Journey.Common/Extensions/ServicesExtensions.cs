@@ -10,6 +10,7 @@ namespace Journey.Common.Extensions
         public static IServiceCollection AddSettings(this IServiceCollection services, IConfiguration configuration)
         {
             services.Configure<TelegramBotSettings>(configuration.GetSection(nameof(TelegramBotSettings)));
+            services.Configure<TelegramReceiverSettings>(configuration.GetSection(nameof(TelegramReceiverSettings)));
 
             return services;
         }

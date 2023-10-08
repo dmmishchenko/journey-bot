@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JourneyBot.Forms", "Journey
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TelegramBot", "TelegramBot", "{F3704638-3242-4FFF-A278-8F8128E58F8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journey.TelegramBot.Polling", "Journey.TelegramBot.Polling\Journey.TelegramBot.Polling.csproj", "{AC7D0B3D-8306-4E6C-9573-0ADC714A131F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Journey.TelegramBot.Polling", "Journey.TelegramBot.Polling\Journey.TelegramBot.Polling.csproj", "{AC7D0B3D-8306-4E6C-9573-0ADC714A131F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Journey.TelegramBot", "Journey.TelegramBot\Journey.TelegramBot.csproj", "{9B6F09DB-FE5F-49EE-A4B2-FCFDFD7CA201}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{AC7D0B3D-8306-4E6C-9573-0ADC714A131F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC7D0B3D-8306-4E6C-9573-0ADC714A131F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC7D0B3D-8306-4E6C-9573-0ADC714A131F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B6F09DB-FE5F-49EE-A4B2-FCFDFD7CA201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B6F09DB-FE5F-49EE-A4B2-FCFDFD7CA201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B6F09DB-FE5F-49EE-A4B2-FCFDFD7CA201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B6F09DB-FE5F-49EE-A4B2-FCFDFD7CA201}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{410D6F01-944F-488F-A45C-DA87FE02CE18} = {F873F325-79A7-4447-8DB4-B2FD3D7F005F}
 		{4EACD73B-81AF-4B65-9E2B-21B81CE29F96} = {8293F9B1-3B92-424A-A567-F3493CA49176}
 		{AC7D0B3D-8306-4E6C-9573-0ADC714A131F} = {F3704638-3242-4FFF-A278-8F8128E58F8C}
+		{9B6F09DB-FE5F-49EE-A4B2-FCFDFD7CA201} = {F3704638-3242-4FFF-A278-8F8128E58F8C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB6CEDAC-CBA5-4D40-8788-F44F5BC40F4A}
