@@ -72,9 +72,6 @@ namespace Journey.TelegramBot.Polling.Handlers
                     chatAction: ChatAction.Typing,
                     cancellationToken: cancellationToken);
 
-                // Simulate longer running task
-                await Task.Delay(500, cancellationToken);
-
                 InlineKeyboardMarkup inlineKeyboard = new(
                     new[]
                     {

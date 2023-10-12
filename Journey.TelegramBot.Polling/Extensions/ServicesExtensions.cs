@@ -2,6 +2,8 @@
 using Journey.Common.Settings;
 using Journey.TelegramBot.Polling.Handlers;
 using Journey.TelegramBot.Polling.Listeners;
+using Journey.TelegramBot.Polling.Strategy;
+using Journey.TelegramBot.Strategies;
 using Microsoft.Extensions.DependencyInjection;
 using Telegram.Bot;
 using Telegram.Bot.Polling;
@@ -22,6 +24,7 @@ namespace Journey.TelegramBot.Polling.Extensions
 
             services.AddScoped<IUpdateHandler, PollingUpdateHandler>();
             services.AddScoped<ITelegramPollingListener, TelegramPollingListener>();
+            services.AddScoped<IBotStrategy, PollingStrategy>();
 
             return services;
         }
