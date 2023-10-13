@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Journey.Common\Journey.Common.csproj" />
+    <ProjectReference Include="..\Journey.TelegramBot.Management\Journey.TelegramBot.Management.csproj" />
     <ProjectReference Include="..\Journey.TelegramBot.Polling\Journey.TelegramBot.Polling.csproj" />
     <ProjectReference Include="..\Journey.TelegramBot\Journey.TelegramBot.csproj" />
     <ProjectReference Include="..\Journey.Users.Database\Journey.Users.Database.csproj" />

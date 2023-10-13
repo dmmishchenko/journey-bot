@@ -3,6 +3,6 @@
     public interface IBotStrategy
     {
         void Init();
-        void Stop();//move both init and stop usage to activation and deactivation respectivly
+        void Stop();//move both init and stop usage to activation and deactivation services respectivly
     }
 }

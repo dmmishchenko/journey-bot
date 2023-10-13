@@ -4,9 +4,9 @@ using Journey.TelegramBot.Polling.Listeners;
 using Journey.TelegramBot.Strategies;
 using Microsoft.Extensions.Logging;
 
-namespace Journey.TelegramBot.Polling.Strategy
+namespace Journey.TelegramBot.Management.Strategies
 {
-    internal class PollingStrategy : IBotStrategy
+    public class PollingStrategy : IBotStrategy
     {
         private readonly ILogger<PollingStrategy> _logger;
 
@@ -17,7 +17,11 @@ namespace Journey.TelegramBot.Polling.Strategy
 
         public void Init()
         {
-            RecurringJob.AddOrUpdate<TelegramPollingListener>(recurringJobId: RecurrentTasksConsts.PollingTaskJobId, methodCall: u => u.StartPolling(), cronExpression: RecurrentTasksConsts.Every2SecondsCron, queue: RecurrentTasksConsts.PollingQueueName);
+            RecurringJob.AddOrUpdate<TelegramPollingListener>(recurringJobId: RecurrentTasksConsts.PollingTaskJobId,
+                methodCall: u => u.StartPolling(),
+                cronExpression: RecurrentTasksConsts.Every2SecondsCron,
+                queue: RecurrentTasksConsts.PollingQueueName);
+
             _logger.LogInformation($"{nameof(PollingStrategy)} strategy init request sended");
         }
 

@@ -1,9 +1,10 @@
-﻿using Journey.TelegramBot.Strategies;
+﻿using Journey.TelegramBot.Management.Strategies;
+using Journey.TelegramBot.Managers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.ComponentModel.Design;
 
-namespace Journey.TelegramBot.Managers
+namespace Journey.TelegramBot.Management.Managers
 {
     public class BotStrategyManager : IBotStrategyManager
     {
@@ -20,15 +21,10 @@ namespace Journey.TelegramBot.Managers
             _serviceContainer = serviceContainer;
         }
 
-        public Task SwitchStrategy()
-        {
-            return Task.CompletedTask;
-        }
-
         public void StartPolling()
         {
             using var scope = _serviceContainer.CreateScope();
-            var service = scope.ServiceProvider.GetService<IBotStrategy>();
+            var service = scope.ServiceProvider.GetService<PollingStrategy>();
             _logger.LogTrace($"Start polling");
             service.Init();
         }

@@ -1,7 +1,8 @@
 ﻿using Journey.Common.Settings;
+using Journey.TelegramBot.Managers;
 using Microsoft.Extensions.Options;
 
-namespace Journey.TelegramBot.Managers
+namespace Journey.TelegramBot.Management.Managers
 {
     public class BotSettingsManager : IBotSettingsManager
     {
@@ -22,6 +23,11 @@ namespace Journey.TelegramBot.Managers
         public void EnablePolling()
         {
 
+        }
+
+        public Task SwitchStrategy()
+        {
+            return Task.CompletedTask;
         }
     }
 }
