@@ -2,7 +2,6 @@
 using Journey.TelegramBot.Managers;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System.ComponentModel.Design;
 
 namespace Journey.TelegramBot.Management.Managers
 {
@@ -10,11 +9,11 @@ namespace Journey.TelegramBot.Management.Managers
     {
         private readonly ILogger<IBotSettingsManager> _logger;
         private readonly IBotSettingsManager _settingsManager;
-        private readonly IServiceContainer _serviceContainer;
+        private readonly IServiceProvider _serviceContainer;
 
         public BotStrategyManager(ILogger<IBotSettingsManager> logger,
             IBotSettingsManager settingsManager,
-            IServiceContainer serviceContainer)
+            IServiceProvider serviceContainer)
         {
             _logger = logger;
             _settingsManager = settingsManager;
@@ -25,8 +24,8 @@ namespace Journey.TelegramBot.Management.Managers
         {
             using var scope = _serviceContainer.CreateScope();
             var service = scope.ServiceProvider.GetService<PollingStrategy>();
-            _logger.LogTrace($"Start polling");
             service.Init();
+            _logger.LogTrace($"{nameof(BotSettingsManager)}: Start polling");
         }
     }
 }

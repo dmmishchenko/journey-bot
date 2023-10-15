@@ -17,9 +17,8 @@ namespace Journey.TelegramBot.Management.Strategies
 
         public void Init()
         {
-            RecurringJob.AddOrUpdate<TelegramPollingListener>(recurringJobId: RecurrentTasksConsts.PollingTaskJobId,
+            BackgroundJob.Enqueue<ITelegramPollingListener>(
                 methodCall: u => u.StartPolling(),
-                cronExpression: RecurrentTasksConsts.Every2SecondsCron,
                 queue: RecurrentTasksConsts.PollingQueueName);
 
             _logger.LogInformation($"{nameof(PollingStrategy)} strategy init request sended");

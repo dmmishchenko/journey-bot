@@ -1,6 +1,8 @@
 ﻿using Hangfire;
 using Journey.Common.Api;
 using Journey.Common.Settings;
+using Journey.TelegramBot.Management.Managers;
+using Journey.TelegramBot.Managers;
 using Journey.TelegramBot.Polling.Listeners;
 using JourneyBot.Common.Enums;
 using JourneyBot.Datamodel.Models;
@@ -15,13 +17,15 @@ namespace JourneyBot.Web.Controllers.JourneyBot
     {
         private readonly IMessageRenderer _messager;
         private readonly IJourneyBotMessagesService _messagesService;
-        private readonly ITelegramPollingListener _listener;
+        private readonly IBotStrategyManager _botStrategyManager;
 
-        public JourneyBotController(IMessageRenderer messager, IJourneyBotMessagesService messagesService, ITelegramPollingListener listener)
+        public JourneyBotController(IMessageRenderer messager,
+            IJourneyBotMessagesService messagesService,
+            IBotStrategyManager botStrategyManager)
         {
             _messager = messager;
             _messagesService = messagesService;
-            _listener = listener;
+            _botStrategyManager = botStrategyManager;
         }
 
         [HttpGet]
@@ -48,7 +52,7 @@ namespace JourneyBot.Web.Controllers.JourneyBot
         [HttpPost("[action]")]
         public async Task<ServerResult<bool>> StartBotListenerTest()
         {
-            RecurringJob.AddOrUpdate<ITelegramPollingListener>(RecurrentTasksConsts.PollingTaskJobId, u => u.StartPolling(), RecurrentTasksConsts.Every30SecondsCron);
+            _botStrategyManager.StartPolling();
 
             return ServerResults.CachedTrue;
         }

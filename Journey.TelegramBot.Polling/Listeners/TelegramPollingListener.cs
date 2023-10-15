@@ -31,20 +31,38 @@ namespace Journey.TelegramBot.Polling.Listeners
         [Queue(RecurrentTasksConsts.PollingQueueName)]
         public async Task StartPolling()
         {
-            //TODO: mapping and updateType separation
-            var receiverOptions = new ReceiverOptions()
+            try
             {
-                AllowedUpdates = Array.Empty<UpdateType>(),
-                ThrowPendingUpdates = true,
-            };
+                var receiverOptions = new ReceiverOptions()
+                {
+                    AllowedUpdates = new UpdateType[]
+                    {
+                        UpdateType.Message,
+                        UpdateType.InlineQuery,
+                        UpdateType.ChatJoinRequest,
+                        UpdateType.PollAnswer
+                    },
+                    ThrowPendingUpdates = true
+                };
 
-            var me = await _client.GetMeAsync(CancellationToken.None);
-            _logger.LogInformation($"Start receiving updates for {me.Username}");
+                var me = await _client.GetMeAsync(CancellationToken.None);
+                _logger.LogInformation($"Start receiving updates for {me.Username}");
 
-            await _client.ReceiveAsync(
-                updateHandler: _updateHandler,
-                receiverOptions: receiverOptions,
-                cancellationToken: CancellationToken.None);
+                await _client.ReceiveAsync(
+                    updateHandler: _updateHandler,
+                    receiverOptions: receiverOptions,
+                    cancellationToken: CancellationToken.None);
+            }
+            catch
+            {
+                var id = BackgroundJob.Enqueue<ITelegramPollingListener>(queue: RecurrentTasksConsts.PollingQueueName, u => u.StartPolling());
+                _logger.LogInformation($"hangfire: Error in polling process, new process was enqueued, id: {id}");
+            }
+            finally
+            {
+                _logger.LogError($"Hangfire: {nameof(TelegramPollingListener)}.{nameof(StartPolling)} method was finished, see logs for information");
+            }
+            //TODO: mapping and updateType separation
         }
     }
 }
