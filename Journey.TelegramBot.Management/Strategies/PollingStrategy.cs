@@ -18,16 +18,9 @@ namespace Journey.TelegramBot.Management.Strategies
         public void Init()
         {
             BackgroundJob.Enqueue<ITelegramPollingListener>(
-                methodCall: u => u.StartPolling(),
-                queue: RecurrentTasksConsts.PollingQueueName);
+                methodCall: u => u.StartPolling(CancellationToken.None, null));
 
             _logger.LogInformation($"{nameof(PollingStrategy)} strategy init request sended");
-        }
-
-        public void Stop()
-        {
-            RecurringJob.RemoveIfExists(RecurrentTasksConsts.PollingTaskJobId);
-            _logger.LogInformation($"{nameof(PollingStrategy)} strategy stop request sended");
         }
     }
 }

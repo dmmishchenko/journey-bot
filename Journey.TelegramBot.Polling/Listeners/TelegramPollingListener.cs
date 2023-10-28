@@ -1,4 +1,5 @@
 ﻿using Hangfire;
+using Hangfire.Server;
 using Journey.Common.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -27,9 +28,12 @@ namespace Journey.TelegramBot.Polling.Listeners
             _updateHandler = updateHandler;
         }
 
-        [AutomaticRetry(Attempts = 0)]
-        [Queue(RecurrentTasksConsts.PollingQueueName)]
-        public async Task StartPolling()
+        public async Task RemovePolling()
+        {
+            RecurringJob.RemoveIfExists(RecurrentTasksConsts.PollingTaskJobId);
+        }
+
+        public async Task StartPolling(CancellationToken token, PerformContext context)
         {
             try
             {
@@ -45,24 +49,24 @@ namespace Journey.TelegramBot.Polling.Listeners
                     ThrowPendingUpdates = true
                 };
 
-                var me = await _client.GetMeAsync(CancellationToken.None);
+                var me = await _client.GetMeAsync(token);
                 _logger.LogInformation($"Start receiving updates for {me.Username}");
 
                 await _client.ReceiveAsync(
                     updateHandler: _updateHandler,
                     receiverOptions: receiverOptions,
-                    cancellationToken: CancellationToken.None);
+                    cancellationToken: token);
             }
-            catch
+            catch(Exception ex)
             {
-                var id = BackgroundJob.Enqueue<ITelegramPollingListener>(queue: RecurrentTasksConsts.PollingQueueName, u => u.StartPolling());
-                _logger.LogInformation($"hangfire: Error in polling process, new process was enqueued, id: {id}");
+                _logger.LogInformation($"Hangfire: Error in polling process, process restart will be enqueued. Exception: {ex}");
             }
             finally
             {
                 _logger.LogError($"Hangfire: {nameof(TelegramPollingListener)}.{nameof(StartPolling)} method was finished, see logs for information");
+                BackgroundJob.Delete(context.BackgroundJob.Id);
+                BackgroundJob.Enqueue<ITelegramPollingListener>(u => u.StartPolling(CancellationToken.None, null));
             }
-            //TODO: mapping and updateType separation
         }
     }
 }
