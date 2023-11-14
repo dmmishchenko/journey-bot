@@ -1,7 +1,8 @@
 using Hangfire;
 using Journey.Common.Extensions;
 using Journey.Common.Settings;
-using Journey.TelegramBot.Extensions;
+using Journey.TelegramBot.Management.Extensions;
+using Journey.TelegramBot.Managers;
 using Journey.TelegramBot.Polling.Extensions;
 using Journey.Users.Database.Extensions;
 using JourneyBot.Database.Extensions;
@@ -35,7 +36,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddLogic();
+builder.Services.AddLogic(builder.Configuration);
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
@@ -64,7 +65,11 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapControllers();
-//addorUpdate for hangfire
+
+var manager = app.Services.GetService<IBotStrategyManager>();
+
+manager.StartPolling();
 //manager with listeners by type!
 
 app.Run();
+

@@ -1,4 +1,5 @@
 ﻿using Hangfire;
+using Hangfire.Server;
 using Journey.Common.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -27,24 +28,45 @@ namespace Journey.TelegramBot.Polling.Listeners
             _updateHandler = updateHandler;
         }
 
-        [AutomaticRetry(Attempts = 0)]
-        [Queue(RecurrentTasksConsts.PollingQueueName)]
-        public async Task StartPolling()
+        public async Task RemovePolling()
         {
-            //TODO: mapping and updateType separation
-            var receiverOptions = new ReceiverOptions()
+            RecurringJob.RemoveIfExists(RecurrentTasksConsts.PollingTaskJobId);
+        }
+
+        public async Task StartPolling(CancellationToken token, PerformContext context)
+        {
+            try
             {
-                AllowedUpdates = Array.Empty<UpdateType>(),
-                ThrowPendingUpdates = true,
-            };
+                var receiverOptions = new ReceiverOptions()
+                {
+                    AllowedUpdates = new UpdateType[]
+                    {
+                        UpdateType.Message,
+                        UpdateType.InlineQuery,
+                        UpdateType.ChatJoinRequest,
+                        UpdateType.PollAnswer
+                    },
+                    ThrowPendingUpdates = true
+                };
 
-            var me = await _client.GetMeAsync(CancellationToken.None);
-            _logger.LogInformation($"Start receiving updates for {me.Username}");
+                var me = await _client.GetMeAsync(token);
+                _logger.LogInformation($"Start receiving updates for {me.Username}");
 
-            await _client.ReceiveAsync(
-                updateHandler: _updateHandler,
-                receiverOptions: receiverOptions,
-                cancellationToken: CancellationToken.None);
+                await _client.ReceiveAsync(
+                    updateHandler: _updateHandler,
+                    receiverOptions: receiverOptions,
+                    cancellationToken: token);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogInformation($"Hangfire: Error in polling process, process restart will be enqueued. Exception: {ex}");
+            }
+            finally
+            {
+                _logger.LogError($"Hangfire: {nameof(TelegramPollingListener)}.{nameof(StartPolling)} method was finished, see logs for information");
+                BackgroundJob.Delete(context.BackgroundJob.Id);
+                BackgroundJob.Enqueue<ITelegramPollingListener>(u => u.StartPolling(CancellationToken.None, null));
+            }
         }
     }
 }

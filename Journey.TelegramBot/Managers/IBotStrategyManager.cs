@@ -2,6 +2,6 @@
 {
     public interface IBotStrategyManager
     {
-        Task SwitchStrategy();
+        void StartPolling();//move this out
     }
 }

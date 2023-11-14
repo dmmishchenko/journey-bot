@@ -4,5 +4,6 @@
     {
         void EnablePolling();
         void EnableWebHook();
+        Task SwitchStrategy();
     }
 }
