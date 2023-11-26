@@ -6,11 +6,13 @@ using Telegram.Bot.Types.ReplyMarkups;
 
 
 
-public class MessageService
+public class EditedMessageService
 {
-    private readonly ILogger<MessageService> _logger;
+    private readonly ILogger<EditedMessageService> _logger;
     private readonly ITelegramBotClient _client;
-    public MessageService(ITelegramBotClient client, ILogger<MessageService> logger)
+
+
+    public EditedMessageService(ITelegramBotClient client, ILogger<EditedMessageService> logger)
     {
         _client = client;
         _logger = logger;
@@ -18,11 +20,7 @@ public class MessageService
 
     public async Task BotOnMessageReceived(Message message, CancellationToken cancellationToken)
     {
-        if (message.Type == MessageType.Text)
-        {
-            await HandleTextMessage(message, cancellationToken);
-        }
-
+        await HandleTextMessage(message, cancellationToken);
     }
 
     private async Task HandleTextMessage(Message message, CancellationToken cancellationToken)

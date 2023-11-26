@@ -2,6 +2,8 @@ using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
+
+
 public class ChosenInlineResultService
 {
     private readonly ILogger<ChosenInlineResultService> _logger;
@@ -16,8 +18,6 @@ public class ChosenInlineResultService
     // BotOnChosenInlineResultReceived
     public async Task HandleChosenInlineResultAsync(ChosenInlineResult chosenInlineResult, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Received inline result: {ChosenInlineResultId}", chosenInlineResult.ResultId);
-
         await _client.SendTextMessageAsync(
             chatId: chosenInlineResult.From.Id,
             text: $"You chose result with Id: {chosenInlineResult.ResultId}",

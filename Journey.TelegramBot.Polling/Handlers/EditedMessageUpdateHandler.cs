@@ -5,11 +5,11 @@ using Telegram.Bot.Types;
 
 namespace Journey.TelegramBot.Polling.Handlers
 {
-    public class MessageUpdateHandler : ITelegramUpdateHandler
+    public class EditedMessageUpdateHandler : ITelegramUpdateHandler
     {
-        private readonly ILogger<MessageUpdateHandler> _logger;
+        private readonly ILogger<EditedMessageUpdateHandler> _logger;
         private readonly MessageService _messageService;
-        public MessageUpdateHandler(MessageService messageService, ILogger<MessageUpdateHandler> logger)
+        public EditedMessageUpdateHandler(MessageService messageService, ILogger<EditedMessageUpdateHandler> logger)
         {
             _logger = logger;
             _messageService = messageService;
@@ -18,8 +18,8 @@ namespace Journey.TelegramBot.Polling.Handlers
         public async Task HandleUpdateAsync(Update update, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Receive message type: {MessageType}", update.Type);
-            
-            await _messageService.BotOnMessageReceived(update.Message, cancellationToken);
+
+            await _messageService.BotOnMessageReceived(update.EditedMessage, cancellationToken);
         }
     }
 }

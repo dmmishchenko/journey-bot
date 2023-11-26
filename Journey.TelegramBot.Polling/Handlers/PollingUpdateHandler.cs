@@ -4,8 +4,8 @@ using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Types.InlineQueryResults;
-using Telegram.Bot.Types.ReplyMarkups;
+
+
 
 namespace Journey.TelegramBot.Polling.Handlers
 {
@@ -17,12 +17,14 @@ namespace Journey.TelegramBot.Polling.Handlers
         private readonly CallbackQueryUpdateHandler _callbackQueryUpdateHandler;
         private readonly InlineQueryUpdateHandler _inlineQueryUpdateHandler;
         private readonly ChosenInlineResultUpdateHandler _chosenInlineResultUpdateHandler;
+        private readonly EditedMessageUpdateHandler _editMessageUpdateHandler;
 
 
         public PollingUpdateHandler(
         ILogger<PollingUpdateHandler> logger,
         ITelegramBotClient client,
         MessageUpdateHandler messageUpdateHandler,
+        EditedMessageUpdateHandler editedMessageUpdateHandler,
         CallbackQueryUpdateHandler callbackQueryUpdateHandler,
         InlineQueryUpdateHandler inlineQueryUpdateHandler,
         ChosenInlineResultUpdateHandler chosenInlineResultUpdateHandler
@@ -31,6 +33,7 @@ namespace Journey.TelegramBot.Polling.Handlers
             _logger = logger;
             _client = client;
             _messageUpdateHandler = messageUpdateHandler;
+            _editMessageUpdateHandler = editedMessageUpdateHandler;
             _callbackQueryUpdateHandler = callbackQueryUpdateHandler;
             _inlineQueryUpdateHandler = inlineQueryUpdateHandler;
             _chosenInlineResultUpdateHandler = chosenInlineResultUpdateHandler;
@@ -38,23 +41,29 @@ namespace Journey.TelegramBot.Polling.Handlers
 
         public async Task HandleUpdateAsync(ITelegramBotClient _, Update update, CancellationToken cancellationToken)
         {
-            await _messageUpdateHandler.HandleUpdateAsync(update, cancellationToken);
-            await _callbackQueryUpdateHandler.HandleUpdateAsync(update, cancellationToken);
-            await _inlineQueryUpdateHandler.HandleUpdateAsync(update, cancellationToken);
-            await _chosenInlineResultUpdateHandler.HandleUpdateAsync(update, cancellationToken);
-            await UnknownUpdateHandlerAsync(update, cancellationToken);
+            switch (update.Type)
+            {
+                case UpdateType.Message:
+                    await _messageUpdateHandler.HandleUpdateAsync(update, cancellationToken);
+                    break;
+                case UpdateType.EditedMessage:
+                    await _editMessageUpdateHandler.HandleUpdateAsync(update, cancellationToken);
+                    break;
+                case UpdateType.CallbackQuery:
+                    await _callbackQueryUpdateHandler.HandleUpdateAsync(update, cancellationToken);
+                    break;
+                case UpdateType.InlineQuery:
+                    await _inlineQueryUpdateHandler.HandleUpdateAsync(update, cancellationToken);
+                    break;
+                case UpdateType.ChosenInlineResult:
+                    await _chosenInlineResultUpdateHandler.HandleUpdateAsync(update, cancellationToken);
+                    break;
+                default:
+                    await UnknownUpdateHandlerAsync(update, cancellationToken);
+                    break;
+            }
+
         }
-
-        private async Task BotOnChosenInlineResultReceived(ChosenInlineResult chosenInlineResult, CancellationToken cancellationToken)
-        {
-            _logger.LogInformation("Received inline result: {ChosenInlineResultId}", chosenInlineResult.ResultId);
-
-            await _client.SendTextMessageAsync(
-                chatId: chosenInlineResult.From.Id,
-                text: $"You chose result with Id: {chosenInlineResult.ResultId}",
-                cancellationToken: cancellationToken);
-        }
-
 
         private Task UnknownUpdateHandlerAsync(Update update, CancellationToken cancellationToken)
         {

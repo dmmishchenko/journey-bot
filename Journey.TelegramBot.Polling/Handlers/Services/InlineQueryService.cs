@@ -1,15 +1,14 @@
 using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InlineQueryResults;
-using Telegram.Bot.Types.ReplyMarkups;
+
+
 
 public class InlineQueryService
 {
     private readonly ILogger<InlineQueryService> _logger;
     private readonly ITelegramBotClient _client;
-
 
     public InlineQueryService(ITelegramBotClient client, ILogger<InlineQueryService> logger)
     {
@@ -20,8 +19,6 @@ public class InlineQueryService
     // BotOnInlineQueryReceived
     public async Task HandleInlineQueryAsync(InlineQuery inlineQuery, CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Received inline query from: {InlineQueryFromId}", inlineQuery.From.Id);
-
         InlineQueryResult[] results = {
             // displayed result
             new InlineQueryResultArticle(
@@ -37,6 +34,4 @@ public class InlineQueryService
             isPersonal: true,
             cancellationToken: cancellationToken);
     }
-
-
 }
