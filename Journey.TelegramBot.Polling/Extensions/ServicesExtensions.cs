@@ -20,6 +20,17 @@ namespace Journey.TelegramBot.Polling.Extensions
                     return new TelegramBotClient(options, httpClient);
                 });
 
+            services.AddScoped<MessageService>();
+            services.AddScoped<CallbackQueryService>();
+            services.AddScoped<InlineQueryService>();
+            services.AddScoped<ChosenInlineResultService>();
+
+            services.AddScoped<MessageUpdateHandler>();
+            services.AddScoped<EditedMessageUpdateHandler>();
+            services.AddScoped<CallbackQueryUpdateHandler>();
+            services.AddScoped<InlineQueryUpdateHandler>();
+            services.AddScoped<ChosenInlineResultUpdateHandler>();
+
             services.AddScoped<IUpdateHandler, PollingUpdateHandler>();
             services.AddScoped<ITelegramPollingListener, TelegramPollingListener>();
 
