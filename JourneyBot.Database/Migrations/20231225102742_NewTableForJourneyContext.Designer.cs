@@ -3,6 +3,7 @@ using System;
 using JourneyBot.Database.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace JourneyBot.Database.Migrations
 {
     [DbContext(typeof(JourneyBotContext))]
-    partial class JourneyBotContextModelSnapshot : ModelSnapshot
+    [Migration("20231225102742_NewTableForJourneyContext")]
+    partial class NewTableForJourneyContext
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

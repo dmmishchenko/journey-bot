@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace JourneyBot.Datamodel.Database.Context
 {
-    public class JourneyUsersActionDbModel
+    public class JourneySessionActionDbModel
     {
         [Key]
         public int Id { get; set; }

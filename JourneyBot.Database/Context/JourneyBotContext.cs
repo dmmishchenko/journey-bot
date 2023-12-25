@@ -10,20 +10,30 @@ namespace JourneyBot.Database.Context
 
         }
 
+        #region Journey info
         public DbSet<JourneyDbModel> Journeys { get; set; }
         public DbSet<JourneyStepDbModel> Steps { get; set; }
         public DbSet<JourneyStepConditionDbModel> StepConditions { get; set; }
         public DbSet<JourneyInteractionDbModel> Interactions { get; set; }
         public DbSet<JourneyActionDbModel> Actions { get; set; }
         public DbSet<JourneyOptionDbModel> Options { get; set; }
-        public DbSet<JourneyUsersMessageDbModel> Messages { get; set; }
+        #endregion
+
+        #region Session info
         public DbSet<JourneySessionDbModel> Sessions { get; set; }
         public DbSet<JourneySessionStepDbModel> SessionSteps { get; set; }
         public DbSet<JourneySessionStepConditionDbModel> SessionStepConditions { get; set; }
         public DbSet<JourneySessionInteractionDbModel> SessionStepInteractions { get; set; }
-        public DbSet<JourneyUsersActionDbModel> UsersActions { get; set; }
-        public DbSet<JourneyUsersOptionDbModel> UsersOptions { get; set; }
-        public DbSet<JourneyUserInteractionDbModel> UserActions { get; set; }
+        public DbSet<JourneySessionActionDbModel> SessionActions { get; set; }
+        public DbSet<JourneySessionOptionDbModel> SessionOptions { get; set; }
+        #endregion
+
+        #region User actions info
+        public JourneyUserMessageDbModel UserMessages { get; set; }
+        public DbSet<JourneySessionUsersMessageDbModel> UsersSessionMessages { get; set; }
+        public DbSet<JourneyUserInteractionDbModel> UserInteractions { get; set; }
+        #endregion
+
         public DbSet<JourneyBotMessageDbModel> BotMessages { get; set; }
     }
 }

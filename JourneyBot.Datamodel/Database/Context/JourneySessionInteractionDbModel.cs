@@ -11,9 +11,9 @@ namespace JourneyBot.Datamodel.Database.Context
         public int StepId { get; set; }
         public JourneySessionStepDbModel Step { get; set; }
         public int InteractionId { get; set; }
-        [InverseProperty(nameof(JourneyUsersOptionDbModel.Interaction))]
-        public ICollection<JourneyUsersOptionDbModel> Options { get; set; }
-        [InverseProperty(nameof(JourneyUsersActionDbModel.Interaction))]
-        public ICollection<JourneyUsersActionDbModel> Actions { get; set; }
+        [InverseProperty(nameof(JourneySessionOptionDbModel.Interaction))]
+        public ICollection<JourneySessionOptionDbModel> Options { get; set; }
+        [InverseProperty(nameof(JourneySessionActionDbModel.Interaction))]
+        public ICollection<JourneySessionActionDbModel> Actions { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace JourneyBot.Datamodel.Database.Context
         public int? Option { get; set; }
         [ForeignKey(nameof(UsersMessage))]
         public int? UsersMessageId { get; set; }
-        public JourneyUsersMessageDbModel UsersMessage { get; set; }
+        public JourneySessionUsersMessageDbModel UsersMessage { get; set; }
         public DateTimeOffset DateTime { get; set; }
     }
 }
