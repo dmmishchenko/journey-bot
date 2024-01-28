@@ -5,10 +5,11 @@ using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
-
-
 namespace Journey.TelegramBot.Polling.Handlers
 {
+    /// <summary>
+    /// Handler for polling operations
+    /// </summary>
     public class PollingUpdateHandler : IUpdateHandler
     {
         private readonly ILogger<PollingUpdateHandler> _logger;

@@ -5,6 +5,9 @@ using Telegram.Bot.Types;
 
 namespace Journey.TelegramBot.Polling.Handlers
 {
+    /// <summary>
+    /// Handler for user request to bot with '@' markings
+    /// </summary>
     public class InlineQueryUpdateHandler : ITelegramUpdateHandler
     {
         private readonly ILogger<InlineQueryService> _logger;

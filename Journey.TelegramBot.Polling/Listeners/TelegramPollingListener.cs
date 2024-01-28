@@ -42,6 +42,9 @@ namespace Journey.TelegramBot.Polling.Listeners
                     AllowedUpdates = new UpdateType[]
                     {
                         UpdateType.Message,
+                        UpdateType.ChatJoinRequest,
+                        UpdateType.MyChatMember,
+                        UpdateType.EditedMessage,
                         UpdateType.InlineQuery,
                         UpdateType.ChatJoinRequest,
                         UpdateType.PollAnswer

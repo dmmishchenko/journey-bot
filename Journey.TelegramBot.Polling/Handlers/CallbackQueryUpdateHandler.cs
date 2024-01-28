@@ -1,10 +1,11 @@
 using Microsoft.Extensions.Logging;
 using Telegram.Bot.Types;
 
-
-
 namespace Journey.TelegramBot.Polling.Handlers
 {
+    /// <summary>
+    /// Handler for user actions with 'buttons'
+    /// </summary>
     public class CallbackQueryUpdateHandler : ITelegramUpdateHandler
     {
         private readonly ILogger<CallbackQueryService> _logger;
@@ -17,9 +18,9 @@ namespace Journey.TelegramBot.Polling.Handlers
 
         public async Task HandleUpdateAsync(Update update, CancellationToken cancellationToken)
         {
-                _logger.LogInformation("Received inline keyboard callback from: {CallbackQueryId}", update.CallbackQuery.Id);
-                
-                await _callbackQueryService.HandleCallbackQueryAsync(update.CallbackQuery, cancellationToken);
+            _logger.LogInformation("Received inline keyboard callback from: {CallbackQueryId}", update.CallbackQuery.Id);
+
+            await _callbackQueryService.HandleCallbackQueryAsync(update.CallbackQuery, cancellationToken);
         }
     }
 }

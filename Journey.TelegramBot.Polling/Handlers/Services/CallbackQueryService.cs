@@ -2,8 +2,6 @@ using Microsoft.Extensions.Logging;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
-
-
 public class CallbackQueryService
 {
     private readonly ILogger<CallbackQueryService> _logger;
@@ -15,7 +13,6 @@ public class CallbackQueryService
         _client = client;
     }
 
-// BotOnCallbackQueryReceived
     public async Task HandleCallbackQueryAsync(CallbackQuery callbackQuery, CancellationToken cancellationToken)
     {
         await _client.AnswerCallbackQueryAsync(

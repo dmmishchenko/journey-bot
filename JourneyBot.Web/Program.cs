@@ -59,12 +59,12 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseHangfireDashboard();
 
+app.MapDefaultControllerRoute();
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapRazorPages();
-app.MapControllers();
 
 var manager = app.Services.GetService<IBotStrategyManager>();
 

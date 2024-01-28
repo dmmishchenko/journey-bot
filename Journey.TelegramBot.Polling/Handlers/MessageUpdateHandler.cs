@@ -5,6 +5,9 @@ using Telegram.Bot.Types;
 
 namespace Journey.TelegramBot.Polling.Handlers
 {
+    /// <summary>
+    /// Handler for all of the users messages
+    /// </summary>
     public class MessageUpdateHandler : ITelegramUpdateHandler
     {
         private readonly ILogger<MessageUpdateHandler> _logger;
