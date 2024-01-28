@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JourneyBot.Web.Controllers.Users
 {
@@ -6,7 +7,14 @@ namespace JourneyBot.Web.Controllers.Users
     {
         public UsersController()
         {
-            
+
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<string> Test()
+        {
+            return "Test completed";
         }
     }
 }
